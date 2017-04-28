@@ -39,31 +39,31 @@
             android:text="Progress/Dots" />
     </LinearLayout>
 
-<!--
-    <ScrollView
-        android:id="@+id/mobilescroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_above="@+id/llNavigationControls"
-        android:background="#E7E7E7"
-        android:fillViewport="true">
--->
-
-        <RelativeLayout
+    <!--
+        <ScrollView
+            android:id="@+id/mobilescroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/appBarLayout"
             android:layout_above="@+id/llNavigationControls"
-            android:background="#E7E7E7">
+            android:background="#E7E7E7"
+            android:fillViewport="true">
+    -->
 
-            <formstepper.CustomViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
-<!--    </ScrollView>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llNavigationControls"
+        android:layout_below="@+id/appBarLayout"
+        android:background="#E7E7E7">
+
+        <formstepper.CustomViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <!--    </ScrollView>-->
 
     <LinearLayout
         android:id="@+id/llNavigationControls"
