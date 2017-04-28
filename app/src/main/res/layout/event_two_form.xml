@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ScrollView
+            android:id="@+id/scrollViewEventTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:fadingEdgeLength="25dp"
+            android:requiresFadingEdge="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardEventOne"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                app:cardUseCompatPadding="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/SecondEventHeadingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/margin_top_forms"
+                        android:text="Event 2 (Engagement/Sagan etc..)"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/TobeAddedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/SecondEventHeadingText"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/margin_top_forms"
+                        android:text="Include this event?"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvNO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/switchEventTwo"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="No"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/switchEventTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TobeAddedText"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@id/tvNO"
+                        android:checked="true" />
+
+                    <TextView
+                        android:id="@+id/tvYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/switchEventTwo"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/switchEventTwo"
+                        android:text="Yes"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/EventNameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/SecondEventHeadingText"
+                        android:layout_marginTop="@dimen/margin_top_forms"
+                        android:layout_toRightOf="@+id/dividerEventTwo"
+                        android:text="Event Name"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/etEventNameText"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/switchEventTwo"
+                        android:layout_alignStart="@+id/EventNameText"
+                        android:imeOptions="actionNext"
+                        android:maxLength="20"
+                        android:singleLine="true"
+                        android:textSize="@dimen/headingEvents"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <View
+                        android:id="@+id/dividerEventTwo"
+                        android:layout_width="50dp"
+                        android:layout_height="@dimen/marginEventTopViewLine"
+                        android:layout_centerInParent="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlEventTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etEventNameText"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <View
+                            android:id="@+id/dividerEventInsiderl"
+                            android:layout_width="50dp"
+                            android:layout_height="@dimen/marginEventTopViewLine"
+                            android:layout_centerInParent="true" />
+
+                        <TextView
+                            android:id="@+id/DateTextEventTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Event Date &amp; Time"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imgDateCalenderEventTwo"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@+id/DateTextEventTwo"
+                            android:layout_marginLeft="65dp"
+                            android:src="@drawable/calendar" />
+
+                        <TextView
+                            android:id="@+id/EventTwoDateTimeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_toRightOf="@+id/dividerEventInsiderl"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:text="23/10/2015, 7:00pm"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/LocationTextEventTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imgDateCalenderEventTwo"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Event Location(Address)"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/LocationValueEventTwo"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/LocationTextEventTwo"
+                            android:layout_below="@+id/LocationTextEventTwo"
+                            android:layout_marginRight="10dp"
+                            android:layout_toStartOf="@+id/PinCodeTextEventTwo"
+                            android:textSize="@dimen/headingEvents" />
+
+                        <TextView
+                            android:id="@+id/PinCodeTextEventTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imgDateCalenderEventTwo"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_toRightOf="@+id/dividerEventInsiderl"
+                            android:text="Pin Code"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/PinCodeValueEventTwo"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/PinCodeTextEventTwo"
+                            android:layout_below="@+id/PinCodeTextEventTwo"
+                            android:layout_toRightOf="@+id/dividerEventInsiderl"
+                            android:imeOptions="actionNext"
+                            android:maxLength="8"
+                            android:nextFocusForward="@+id/etRSVPNameOne"
+                            android:singleLine="true"
+                            android:textSize="@dimen/headingEvents" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/scrollViewEventTwo"
+            android:gravity="center_horizontal|bottom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:alpha="0.5"
+                android:src="@drawable/app_icon_four" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

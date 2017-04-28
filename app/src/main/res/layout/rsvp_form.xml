@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ScrollView
+            android:id="@+id/scrollViewEventTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:fadingEdgeLength="25dp"
+            android:requiresFadingEdge="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardRSVP"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                app:cardUseCompatPadding="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/RSVPtHeadingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/margin_top_forms"
+                        android:text="R.S.V.P details"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/TobeAddedRSVPText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/RSVPtHeadingText"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/margin_top_forms"
+                        android:text="Include RSVP details?"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvNO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/switchEventRSVP"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="No"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/switchEventRSVP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TobeAddedRSVPText"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@id/tvNO"
+                        android:checked="true" />
+
+                    <TextView
+                        android:id="@+id/tvYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/switchEventRSVP"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/switchEventRSVP"
+                        android:text="Yes"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/rlEventRSVP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/switchEventRSVP"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <View
+                            android:id="@+id/dividerEventRSVP"
+                            android:layout_width="50dp"
+                            android:layout_height="@dimen/marginEventTopViewLine"
+                            android:layout_centerInParent="true" />
+
+                        <TextView
+                            android:id="@+id/RSVPNameOneText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Family Member 1"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etRSVPNameOne"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/RSVPNameOneText"
+                            android:layout_below="@+id/RSVPNameOneText"
+                            android:imeOptions="actionNext"
+                            android:maxLength="25"
+                            android:nextFocusForward="@+id/etRSVPMobileOne"
+                            android:singleLine="true"
+                            android:textSize="@dimen/headingEvents" />
+
+
+                        <TextView
+                            android:id="@+id/RSVPMobileOneText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_toRightOf="@+id/dividerEventRSVP"
+                            android:text="Contact Number"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etRSVPMobileOne"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/RSVPMobileOneText"
+                            android:layout_below="@+id/RSVPMobileOneText"
+                            android:layout_toRightOf="@+id/dividerEventRSVP"
+                            android:digits="0123456789"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:maxLength="12"
+                            android:nextFocusForward="@+id/etRSVPNameTwo"
+                            android:singleLine="true"
+                            android:textSize="@dimen/headingEvents" />
+
+
+                        <TextView
+                            android:id="@+id/RSVPNameTwoText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etRSVPNameOne"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Family Member 2"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etRSVPNameTwo"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/RSVPNameTwoText"
+                            android:layout_below="@+id/RSVPNameTwoText"
+                            android:imeOptions="actionNext"
+                            android:maxLength="25"
+                            android:nextFocusForward="@+id/etRSVPMobileTwo"
+                            android:singleLine="true"
+                            android:textSize="@dimen/headingEvents" />
+
+
+                        <TextView
+                            android:id="@+id/RSVPMobileTwoText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etRSVPMobileOne"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_toRightOf="@+id/dividerEventRSVP"
+                            android:text="Contact Number"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etRSVPMobileTwo"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/RSVPMobileTwoText"
+                            android:layout_below="@+id/RSVPMobileTwoText"
+                            android:layout_toRightOf="@+id/dividerEventRSVP"
+                            android:digits="0123456789"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:maxLength="12"
+                            android:nextFocusForward="@+id/InviteMesRSVPValue"
+                            android:singleLine="true"
+
+                            android:textSize="@dimen/headingEvents" />
+
+                        <TextView
+                            android:id="@+id/InviteMesTextRSVP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etRSVPMobileTwo"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Invite Message from the family"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/InviteMesRSVPCharacters"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etRSVPMobileTwo"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_toRightOf="@+id/InviteMesTextRSVP"
+                            android:text="@string/number_of_characters"
+                            android:textColor="@color/textColor"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/InviteMesRSVPValue"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignStart="@+id/InviteMesTextRSVP"
+                            android:layout_below="@+id/InviteMesTextRSVP"
+                            android:maxLength="150"
+                            android:textSize="@dimen/headingEvents" />
+
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/scrollViewEventTwo"
+            android:gravity="center_horizontal|bottom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:alpha="0.5"
+                android:src="@drawable/app_icon_four" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
