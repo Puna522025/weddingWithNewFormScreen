@@ -42,16 +42,12 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
     List<Class> fragmentList;
     ViewPager mViewPager;
     LinearLayout linearLayout;
-    SwitchCompat switchControl;
     RelativeLayout viewPagerIndicator;
     private Button mPrevious;
     private CommonFunctions commonFunctions;
     private int CURRENTPAGE = 0;
-    //  private ScrollView mScroll;
-    private ProgressBar mStepperProgress;
     private ImageView[] dots;
     private Button nextButton;
-   // private TextView continueToInvite;
     private Toolbar toolbar;
 
     @Override
@@ -61,22 +57,18 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
 
         mPrevious = (Button) findViewById(R.id.back);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mStepperProgress = (ProgressBar) findViewById(R.id.stepperprogressbar);
-        switchControl = (SwitchCompat) findViewById(R.id.switchControl);
-
         nextButton = (Button) findViewById(R.id.next);
-        //continueToInvite = (TextView) findViewById(R.id.continueToInvite);
 
         linearLayout = (LinearLayout) findViewById(R.id.viewPagerCountDots);
         viewPagerIndicator = (RelativeLayout) findViewById(R.id.viewPagerIndicator);
-        mViewPager.setOffscreenPageLimit(0);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        mViewPager.setOffscreenPageLimit(5);
 
         setSupportActionBar(toolbar);
 
         nextButton.setOnClickListener(this);
         mPrevious.setOnClickListener(this);
-      //  continueToInvite.setOnClickListener(this);
 
         if (savedInstanceState != null && savedInstanceState.getSerializable("FRAGMENTLIST") != null) {
             try {
@@ -95,7 +87,6 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
 
         updateUI();
 
-        mStepperProgress.setMax(commonFunctions.TotalFragments);
         drawPageSelectionIndicators(0);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -110,19 +101,6 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onPageScrollStateChanged(int state) {
-            }
-        });
-
-        switchControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    viewPagerIndicator.setVisibility(View.GONE);
-                    mStepperProgress.setVisibility(View.VISIBLE);
-                } else {
-                    viewPagerIndicator.setVisibility(View.VISIBLE);
-                    mStepperProgress.setVisibility(View.GONE);
-                }
             }
         });
     }
@@ -176,11 +154,9 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
                 if (commonFunctions.isEverythingFilled()) {
                     commonFunctions.onNextButtonClicked();
                     if (commonFunctions.notLastFragment()) {
-                       // continueToInvite.setVisibility(View.GONE);
                         nextButton.setVisibility(View.VISIBLE);
                         updateUI();
                     } else {
-                        //continueToInvite.setVisibility(View.VISIBLE);
                         nextButton.setVisibility(View.INVISIBLE);
                     }
                 } else {
@@ -190,20 +166,11 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
             case R.id.back:
                 Config.hideKeyboard(getCurrentFocus(), getApplicationContext());
                 if (nextButton.getVisibility() == View.INVISIBLE) {
-                   // continueToInvite.setVisibility(View.GONE);
                     nextButton.setVisibility(View.VISIBLE);
                 }
                 commonFunctions.onBackButtonClicked();
                 updateUI();
                 break;
-           /* case R.id.continueToInvite:
-                Fragment fragment = commonFunctions.getCurrentFragment();
-                if (fragment instanceof ThemesForrmDetails) {
-                    ThemesForrmDetails themesForrmDetails = (ThemesForrmDetails) fragment;
-                    themesForrmDetails.continueToInviteScreen();
-                }
-
-                break;*/
         }
     }
 
@@ -216,7 +183,6 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
             mPrevious.setVisibility(View.INVISIBLE);
         else
             mPrevious.setVisibility(View.VISIBLE);
-        mStepperProgress.setProgress(commonFunctions.CurrentFragment + 1);
     }
 
     /**

@@ -41,7 +41,6 @@ public class EventTwoFormDetails extends Fragment implements View.OnClickListene
 
     RelativeLayout rlEventTwo;
     SwitchCompat switchEventTwo;
-   // ScrollView scrollViewEventTwo;
     int mYear, mMonth, mDay, mHour, mMinute;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,16 +70,9 @@ public class EventTwoFormDetails extends Fragment implements View.OnClickListene
 
         switchEventTwo = (SwitchCompat) view.findViewById(R.id.switchEventTwo);
 
-      //  scrollViewEventTwo = (ScrollView) view.findViewById(R.id.scrollViewEventTwo);
-
         imgDateCalenderEventTwo.setOnClickListener(this);
         switchEventTwo.setOnCheckedChangeListener(this);
-        etLocationValueEventTwo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                   // scrollViewEventTwo.fullScroll(ScrollView.FOCUS_DOWN);
-            }
-        });
+
         rlEventTwo.setVisibility(View.VISIBLE);
         tvEventNameText.setVisibility(View.VISIBLE);
         etEventNameText.setVisibility(View.VISIBLE);
@@ -107,12 +99,8 @@ public class EventTwoFormDetails extends Fragment implements View.OnClickListene
 
         SharedPreferences sharedPreference = getActivity().getSharedPreferences(Config.MyTEMPORARY_PREFERENCES, MODE_PRIVATE);
 
-      /*  etEventNameText.setText(sharedPreference.getString(Config.Temp_EventName,""));
-        etLocationValueEventTwo.setText(sharedPreference.getString(Config.Temp_LocationValue_EventTwo,""));
-        etPinCodeValueEventTwo.setText(sharedPreference.getString(Config.Temp_PinCode_EventTwo,""));*/
         tvEventTwoDateTimeText.setText(sharedPreference.getString(Config.Temp_EventTwoDate,""));
         tvEventTwoDateTimeText.setVisibility(View.VISIBLE);
-        //switchEventTwo.setChecked(sharedPreference.getBoolean(Config.Temp_EventTwoChecked, false));
     }
 
     @Override
@@ -230,6 +218,10 @@ public class EventTwoFormDetails extends Fragment implements View.OnClickListene
                 .append(minutes).append(" ").append(timeSet).toString();
 
         marDateTimeText.setText(formatedDate + ", " + aTime);
+
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences(Config.MyTEMPORARY_PREFERENCES, MODE_PRIVATE).edit();
+        editor.putString(Config.Temp_EventTwoDate, tvEventTwoDateTimeText.getText().toString());
+        editor.apply();
     }
 
     public boolean checkField(){

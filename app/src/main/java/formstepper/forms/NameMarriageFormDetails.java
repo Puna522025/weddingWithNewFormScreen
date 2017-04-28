@@ -32,7 +32,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class NameMarriageFormDetails extends Fragment implements View.OnClickListener {
 
     EditText etNameBri, etNameGro, etLocationValue, etPinCodeValue, etInviteMesValue;
-    ScrollView scrollView;
     ImageView imgDateCalender;
     int mYear, mMonth, mDay, mHour, mMinute;
     TextView tvmarDateTimeText, DateText;
@@ -53,8 +52,6 @@ public class NameMarriageFormDetails extends Fragment implements View.OnClickLis
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-      //  scrollView = (ScrollView) view.findViewById(R.id.scrollViewDetails);
-
         etNameBri = (EditText) view.findViewById(R.id.etNameBri);
         etNameGro = (EditText) view.findViewById(R.id.etNameGro);
         etLocationValue = (EditText) view.findViewById(R.id.LocationValue);
@@ -66,15 +63,6 @@ public class NameMarriageFormDetails extends Fragment implements View.OnClickLis
         DateText = (TextView) view.findViewById(R.id.DateText);
 
         imgDateCalender.setOnClickListener(this);
-
-        etInviteMesValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                   // scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                }
-            }
-        });
     }
 
     public void setValuesBack() {
@@ -82,11 +70,6 @@ public class NameMarriageFormDetails extends Fragment implements View.OnClickLis
 
         tvmarDateTimeText.setText(sharedPreference.getString(Config.Temp_MarriageDate, ""));
         tvmarDateTimeText.setVisibility(View.VISIBLE);
-       /* etNameGro.setText(sharedPreference.getString(Config.Temp_GroomName, ""));
-        etNameBri.setText(sharedPreference.getString(Config.Temp_BrideName, ""));
-        etLocationValue.setText(sharedPreference.getString(Config.Temp_Location_Mar, ""));
-        etPinCodeValue.setText(sharedPreference.getString(Config.Temp_PinCode_marriage, ""));
-        etInviteMesValue.setText(sharedPreference.getString(Config.Temp_InviteMes_Marr, ""));*/
     }
 
     @Override
@@ -201,6 +184,10 @@ public class NameMarriageFormDetails extends Fragment implements View.OnClickLis
                 .append(minutes).append(" ").append(timeSet).toString();
 
         marDateTimeText.setText(formatedDate + ", " + aTime);
+
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences(Config.MyTEMPORARY_PREFERENCES, MODE_PRIVATE).edit();
+        editor.putString(Config.Temp_MarriageDate, tvmarDateTimeText.getText().toString());
+        editor.apply();
     }
 
     public boolean checkField() {
