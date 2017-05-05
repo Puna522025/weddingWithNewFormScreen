@@ -2,6 +2,7 @@ package formstepper;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
@@ -19,51 +20,28 @@ import formstepper.forms.ThemesForrmDetails;
  * This is the adapter for the viewPager.
  */
 
-public class FragmentStateCurrentPageAdapter extends FragmentStatePagerAdapter implements ViewPager.OnPageChangeListener {
+public class FragmentStateCurrentPageAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
     int currentPage = 0;
-    List<Class> mStepperFragment;
+    List<Fragment> mStepperFragment;
 
-    private Hashtable<Integer, WeakReference<Fragment>> fragmentReferences = new Hashtable<>();
-
-
-    FragmentStateCurrentPageAdapter(FragmentManager fm) {
+    FragmentStateCurrentPageAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
+        this.mStepperFragment = fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-       Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new NameMarriageFormDetails();
-                break;
-            case 1:
-                fragment = new EventTwoFormDetails();
-                break;
-            case 2:
-                fragment = new RSVPformDetails();
-                break;
-            case 3:
-                fragment = new ThemesForrmDetails();
-                break;
-        }
-        fragmentReferences.put(position, new WeakReference<Fragment>(fragment));
 
-        return fragment;
+        return mStepperFragment.get(position);
     }
 
-    public Fragment getFragment(int fragmentId) {
-        WeakReference<Fragment> ref = fragmentReferences.get(fragmentId);
-        return ref == null ? null : ref.get();
+    public Fragment getFragment(int position) {
+        return mStepperFragment.get(position);
     }
 
     @Override
     public int getCount() {
         return mStepperFragment.size();
-    }
-
-    public void setFragments(List<Class> fragments) {
-        mStepperFragment = fragments;
     }
 
     @Override

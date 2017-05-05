@@ -2,20 +2,17 @@ package formstepper.forms;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -67,7 +64,6 @@ public class NameMarriageFormDetails extends Fragment implements View.OnClickLis
 
     public void setValuesBack() {
         SharedPreferences sharedPreference = getActivity().getSharedPreferences(Config.MyTEMPORARY_PREFERENCES, MODE_PRIVATE);
-
         tvmarDateTimeText.setText(sharedPreference.getString(Config.Temp_MarriageDate, ""));
         tvmarDateTimeText.setVisibility(View.VISIBLE);
     }
@@ -203,16 +199,6 @@ public class NameMarriageFormDetails extends Fragment implements View.OnClickLis
             Config.checkEditTextNullandSetError(etLocationValue);
             Config.checkEditTextNullandSetError(etPinCodeValue);
             Config.checkEditTextNullandSetError(etInviteMesValue);
-            new AlertDialog.Builder(getContext())
-                    .setTitle("")
-                    .setMessage("Please fill the details")
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
             return false;
         } else {
             storeInSharedPreference();

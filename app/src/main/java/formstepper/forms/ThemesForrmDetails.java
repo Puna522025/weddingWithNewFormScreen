@@ -1,19 +1,18 @@
 package formstepper.forms;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.SwitchCompat;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +21,7 @@ import Common.Config;
 import formstepper.StepperClass;
 import pkapoor.wed.R;
 import pkapoor.wed.ViewGeneratedInvite;
+import tabfragments.RSVP;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -41,6 +41,7 @@ public class ThemesForrmDetails extends Fragment implements View.OnClickListener
 
     String backgroundSelected = "0";
     private TextView continueToInvite;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,7 +166,50 @@ public class ThemesForrmDetails extends Fragment implements View.OnClickListener
                 tickPinkPetals.setVisibility(View.GONE);
                 break;
             case R.id.continueToInvite:
-                continueToInviteScreen();
+
+                boolean isMarriageFilled = true;
+                boolean isEventTwoFilled = true;
+                boolean isRSVPfilled = true;
+
+                for (int i = 0; i < 3; i++){
+
+                    Fragment fragment = StepperClass.getCurrentFragment(i);
+                    if (fragment instanceof NameMarriageFormDetails) {
+                        NameMarriageFormDetails remainderFragment = (NameMarriageFormDetails) fragment;
+                        isMarriageFilled = remainderFragment.checkField();
+                    }
+
+                    if (fragment instanceof EventTwoFormDetails) {
+                        EventTwoFormDetails remainderFragment = (EventTwoFormDetails) fragment;
+                        isEventTwoFilled = remainderFragment.checkField();
+                    }
+                    if (fragment instanceof RSVPformDetails) {
+                        RSVPformDetails remainderFragment = (RSVPformDetails) fragment;
+                        isRSVPfilled = remainderFragment.checkField();
+                    }
+                }
+                    if (isMarriageFilled && isEventTwoFilled && isRSVPfilled) {
+                        continueToInviteScreen();
+                    } else {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        if(!isMarriageFilled)
+                            stringBuilder.append(" - Marriage details.\n");
+                        if(!isEventTwoFilled)
+                            stringBuilder.append(" - Event Two details. \n");
+                        if(!isRSVPfilled)
+                            stringBuilder.append(" - Family details. \n");
+
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("")
+                                .setMessage("Please fill the following - \n"+ stringBuilder)
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
                 break;
         }
         storeInSharedPreference();
@@ -264,7 +308,7 @@ public class ThemesForrmDetails extends Fragment implements View.OnClickListener
 
         SharedPreferences sharedPreference = getActivity().getSharedPreferences(Config.MyTEMPORARY_PREFERENCES, MODE_PRIVATE);
 
-        switch (sharedPreference.getString(Config.Temp_ColorSelected,"")) {
+        switch (sharedPreference.getString(Config.Temp_ColorSelected, "")) {
 
             case "colorRed":
                 tickRed.setVisibility(View.VISIBLE);
@@ -307,7 +351,7 @@ public class ThemesForrmDetails extends Fragment implements View.OnClickListener
                 break;
         }
 
-        switch (sharedPreference.getString(Config.Temp_backgroundSelected,"")) {
+        switch (sharedPreference.getString(Config.Temp_backgroundSelected, "")) {
 
             case "0":
                 tickNoImage.setVisibility(View.VISIBLE);

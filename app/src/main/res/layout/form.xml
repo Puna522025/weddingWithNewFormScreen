@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E7E7E7">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -19,83 +20,48 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabsForm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/custom_tab_layout_height"
+            android:visibility="gone"
+            app:tabGravity="fill"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed" />
+
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/llNavigationControls"
+        android:layout_above="@+id/viewPagerIndicator"
         android:layout_below="@+id/appBarLayout"
         android:background="#E7E7E7">
 
-        <formstepper.CustomViewPager
+        <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </RelativeLayout>
-    <!--    </ScrollView>-->
 
-    <LinearLayout
-        android:id="@+id/llNavigationControls"
-        android:layout_width="match_parent"
-        android:layout_height="48sp"
+    <RelativeLayout
+        android:id="@+id/viewPagerIndicator"
+        android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true">
 
-        <Button
-            android:id="@+id/back"
-            android:layout_width="0sp"
+        <LinearLayout
+            android:id="@+id/viewPagerCountDots"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16sp"
-            android:layout_marginStart="16sp"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:drawableLeft="@drawable/stepper_left"
-            android:drawableStart="@drawable/stepper_left"
-            android:paddingEnd="10sp"
-            android:paddingLeft="0sp"
-            android:paddingRight="10sp"
-            android:paddingStart="0sp"
-            android:text="Back"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="15sp" />
-
-        <RelativeLayout
-            android:id="@+id/viewPagerIndicator"
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:paddingLeft="20sp"
-            android:paddingRight="20sp">
-
-            <LinearLayout
-                android:id="@+id/viewPagerCountDots"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:orientation="horizontal" />
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/next"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16sp"
-            android:layout_marginRight="16sp"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:drawableEnd="@drawable/stepper_right"
-            android:drawableRight="@drawable/stepper_right"
-            android:paddingEnd="0sp"
-            android:paddingLeft="5sp"
-            android:paddingRight="0sp"
-            android:paddingStart="10sp"
-            android:text="Next"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="15sp" />
-    </LinearLayout>
+            android:orientation="horizontal" />
+    </RelativeLayout>
 
 </RelativeLayout>

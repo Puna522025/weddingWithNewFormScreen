@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@android:color/transparent"
-            android:fadingEdgeLength="35dp"
+            android:fadingEdgeLength="45dp"
             android:requiresFadingEdge="vertical">
 
             <android.support.v7.widget.CardView
@@ -42,8 +42,9 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="@dimen/margin_top_forms"
-                        android:text="R.S.V.P details"
-                        android:textColor="@color/textColor"
+                        android:text="Family Details"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/headingEvents"
                         android:textStyle="bold" />
 
@@ -54,7 +55,7 @@
                         android:layout_below="@+id/RSVPtHeadingText"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="@dimen/margin_top_forms"
-                        android:text="Include RSVP details?"
+                        android:text="Include Family details?"
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/headingEvents"
                         android:textStyle="bold" />

@@ -4,24 +4,19 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,55 +32,41 @@ import pkapoor.wed.R;
  * This class handles the fragments sent by the client, adds them to the adapter and generate a viewPager.
  */
 
-public class StepperClass extends AppCompatActivity implements View.OnClickListener {
+public class StepperClass extends AppCompatActivity {
 
-    List<Class> fragmentList;
-    ViewPager mViewPager;
+    List<Fragment> fragmentList;
+    static ViewPager mViewPager;
     LinearLayout linearLayout;
     RelativeLayout viewPagerIndicator;
-    private Button mPrevious;
-    private CommonFunctions commonFunctions;
-    private int CURRENTPAGE = 0;
     private ImageView[] dots;
-    private Button nextButton;
     private Toolbar toolbar;
+    private static FragmentStateCurrentPageAdapter fragmentAdapter;
+    public int totalFragments = 0;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form);
 
-        mPrevious = (Button) findViewById(R.id.back);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        nextButton = (Button) findViewById(R.id.next);
 
         linearLayout = (LinearLayout) findViewById(R.id.viewPagerCountDots);
         viewPagerIndicator = (RelativeLayout) findViewById(R.id.viewPagerIndicator);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        mViewPager.setOffscreenPageLimit(5);
+        //mViewPager.setOffscreenPageLimit(10);
+        tabLayout = (TabLayout) findViewById(R.id.tabsForm);
+        tabLayout.setupWithViewPager(mViewPager);
 
+        toolbar.setTitle("Create your Invite..");
         setSupportActionBar(toolbar);
 
-        nextButton.setOnClickListener(this);
-        mPrevious.setOnClickListener(this);
+        fragmentList = initializeFragments();
 
-        if (savedInstanceState != null && savedInstanceState.getSerializable("FRAGMENTLIST") != null) {
-            try {
-                fragmentList = (List<Class>) savedInstanceState.getSerializable("FRAGMENTLIST");
-                CURRENTPAGE = savedInstanceState.getInt("CURRENTFRAGMENT");
-            } catch (Exception e) {
-                Log.d("Error:", "error while fetching fragments");
-            }
-        } else {
-            fragmentList = init();
-        }
-
-        commonFunctions = new CommonFunctions(mViewPager, fragmentList, getSupportFragmentManager(), this);
-        commonFunctions.CurrentFragment = CURRENTPAGE;
-        CURRENTPAGE = 0;
-
-        updateUI();
+        fragmentAdapter = new FragmentStateCurrentPageAdapter(getSupportFragmentManager(), fragmentList);
+        mViewPager.setAdapter(fragmentAdapter);
+        totalFragments = fragmentList.size();
 
         drawPageSelectionIndicators(0);
 
@@ -96,6 +77,7 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onPageSelected(int position) {
+                Config.hideKeyboard(getCurrentFocus(),getApplicationContext());
                 drawPageSelectionIndicators(position);
             }
 
@@ -103,6 +85,7 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
             public void onPageScrollStateChanged(int state) {
             }
         });
+
     }
 
     /**
@@ -114,8 +97,8 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
         if (linearLayout != null) {
             linearLayout.removeAllViews();
         }
-        dots = new ImageView[commonFunctions.TotalFragments];
-        for (int i = 0; i < commonFunctions.TotalFragments; i++) {
+        dots = new ImageView[totalFragments];
+        for (int i = 0; i < totalFragments; i++) {
             dots[i] = new ImageView(getBaseContext());
             if (i == mPosition) {
                 dots[i].setImageDrawable(getResources().getDrawable(R.drawable.item_selected));
@@ -127,74 +110,21 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
 
-            params.setMargins(4, 0, 4, 0);
+            params.setMargins(15, 0, 15, 0);
             linearLayout.addView(dots[i], params);
         }
     }
 
     /**
-     * Storing the current state of the fragment as well as the list of all fragments.
-     *
-     * @param outState
-     */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("FRAGMENTLIST", (Serializable) fragmentList);
-        outState.putInt("CURRENTFRAGMENT", commonFunctions.CurrentFragment);
-        super.onSaveInstanceState(outState);
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.next:
-                Config.hideKeyboard(getCurrentFocus(), getApplicationContext());
-                if (commonFunctions.isEverythingFilled()) {
-                    commonFunctions.onNextButtonClicked();
-                    if (commonFunctions.notLastFragment()) {
-                        nextButton.setVisibility(View.VISIBLE);
-                        updateUI();
-                    } else {
-                        nextButton.setVisibility(View.INVISIBLE);
-                    }
-                } else {
-                    break;
-                }
-                break;
-            case R.id.back:
-                Config.hideKeyboard(getCurrentFocus(), getApplicationContext());
-                if (nextButton.getVisibility() == View.INVISIBLE) {
-                    nextButton.setVisibility(View.VISIBLE);
-                }
-                commonFunctions.onBackButtonClicked();
-                updateUI();
-                break;
-        }
-    }
-
-    /**
-     * Updates the UI - Sets the text and updates the progress.
-     */
-    public void updateUI() {
-
-        if (commonFunctions.CurrentFragment == 0)
-            mPrevious.setVisibility(View.INVISIBLE);
-        else
-            mPrevious.setVisibility(View.VISIBLE);
-    }
-
-    /**
      * Method which the client overrides and send the fragments.
      */
-    public List<Class> init() {
-        List<Class> stepperFragmentList = new ArrayList<>();
+    public List<Fragment> initializeFragments() {
+        List<Fragment> stepperFragmentList = new ArrayList<>();
 
-        stepperFragmentList.add(NameMarriageFormDetails.class);
-        stepperFragmentList.add(EventTwoFormDetails.class);
-        stepperFragmentList.add(RSVPformDetails.class);
-        stepperFragmentList.add(ThemesForrmDetails.class);
+        stepperFragmentList.add(new NameMarriageFormDetails());
+        stepperFragmentList.add(new EventTwoFormDetails());
+        stepperFragmentList.add(new RSVPformDetails());
+        stepperFragmentList.add(new ThemesForrmDetails());
 
         return stepperFragmentList;
     }
@@ -219,6 +149,16 @@ public class StepperClass extends AppCompatActivity implements View.OnClickListe
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    public static Fragment getCurrentFragment(int position) {
+        Fragment fragment = null;
+        if (mViewPager != null) {
+            if (fragmentAdapter != null) {
+                fragment = fragmentAdapter.getFragment(position);
+            }
+        }
+        return fragment;
     }
 
 }

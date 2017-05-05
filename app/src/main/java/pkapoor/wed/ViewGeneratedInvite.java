@@ -62,6 +62,7 @@ public class ViewGeneratedInvite extends AppCompatActivity implements ViewPager.
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Wedding Invite");
         setSupportActionBar(toolbar);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -424,7 +425,7 @@ public class ViewGeneratedInvite extends AppCompatActivity implements ViewPager.
         adapter.addFragment(new TheCouple(), "The Couple");
         adapter.addFragment(new Events(), "Events");
         if(sharedPreferences.getString(Config.rsvp_tobe,"false").equalsIgnoreCase("true")) {
-            adapter.addFragment(new RSVP(), "RSVP");
+            adapter.addFragment(new RSVP(), "Family");
         }
         viewPager.setAdapter(adapter);
     }

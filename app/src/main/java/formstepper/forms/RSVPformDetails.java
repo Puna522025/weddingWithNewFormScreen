@@ -50,7 +50,6 @@ public class RSVPformDetails extends Fragment implements CompoundButton.OnChecke
         etRSVPMobileTwo = (EditText) view.findViewById(R.id.etRSVPMobileTwo);
         etInviteMesRSVPValue = (EditText) view.findViewById(R.id.InviteMesRSVPValue);
         switchEventRSVP = (SwitchCompat) view.findViewById(R.id.switchEventRSVP);
-
         switchEventRSVP.setOnCheckedChangeListener(this);
 
         rlEventRSVP.setVisibility(View.VISIBLE);
@@ -99,19 +98,6 @@ public class RSVPformDetails extends Fragment implements CompoundButton.OnChecke
     @Override
     public void onResume() {
         super.onResume();
-       // setValuesBack();
-    }
-
-    private void setValuesBack() {
-
-        SharedPreferences sharedPreference = getActivity().getSharedPreferences(Config.MyTEMPORARY_PREFERENCES, MODE_PRIVATE);
-
-        etRSVPNameOne.setText(sharedPreference.getString(Config.Temp_RSVP_Name_One,""));
-        etRSVPMobileOne.setText(sharedPreference.getString(Config.Temp_RSVP_Mobile_One,""));
-        etInviteMesRSVPValue.setText(sharedPreference.getString(Config.Temp_RSVP_Invite,""));
-        etRSVPNameTwo.setText(sharedPreference.getString(Config.Temp_RSVP_Name_Two,""));
-        etRSVPMobileTwo.setText(sharedPreference.getString(Config.Temp_RSVP_Mobile_Two,""));
-        switchEventRSVP.setChecked(sharedPreference.getBoolean(Config.Temp_RSVP_checked, false));
     }
 
     public void storeInSharedPreference() {

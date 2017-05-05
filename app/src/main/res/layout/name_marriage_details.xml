@@ -11,6 +11,7 @@
         android:layout_centerInParent="true"
         android:background="@android:color/transparent"
         android:focusable="true"
+        android:layout_marginBottom="5dp"
         android:focusableInTouchMode="true">
 
         <ScrollView
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@android:color/transparent"
-            android:fadingEdgeLength="35dp"
+            android:fadingEdgeLength="45dp"
             android:fillViewport="true"
             android:requiresFadingEdge="vertical">
 
@@ -38,10 +39,25 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/SecondEventHeadingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/margin_top_forms"
+                        android:text="Wedding Details"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/headingEvents"
+                        android:textStyle="bold" />
+
+
+                    <TextView
                         android:id="@+id/NameBriText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:layout_below="@+id/SecondEventHeadingText"
                         android:layout_marginTop="@dimen/margin_top_forms"
                         android:text="Name(Bride)"
                         android:textColor="@color/textColor"
@@ -62,6 +78,7 @@
                         android:layout_marginTop="@dimen/margin_top_forms"
                         android:layout_toRightOf="@+id/divider"
                         android:text="Name(Groom)"
+                        android:layout_below="@+id/SecondEventHeadingText"
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/headingEvents"
                         android:textStyle="bold" />

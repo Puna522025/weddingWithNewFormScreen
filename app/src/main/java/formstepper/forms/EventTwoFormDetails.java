@@ -2,13 +2,11 @@ package formstepper.forms;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +16,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -229,7 +226,8 @@ public class EventTwoFormDetails extends Fragment implements View.OnClickListene
         if(!isFilled){
             if (switchEventTwo.isChecked()) {
                 Config.changeDateTextcolor(tvEventTwoDateTimeText, DateTextEventTwo,
-                        ContextCompat.getColor(getContext(), R.color.colorRed), ContextCompat.getColor(getContext(), R.color.textColor));
+                        ContextCompat.getColor(getContext(), R.color.colorRed),
+                        ContextCompat.getColor(getContext(), R.color.textColor));
 
                 Config.checkEditTextNullandSetError(etEventNameText);
                 Config.checkEditTextNullandSetError(etLocationValueEventTwo);

@@ -59,9 +59,8 @@ import analytics.AnalyticsApplication;
 import database.DatabaseHandler;
 import database.WedPojo;
 import formstepper.StepperClass;
-import pkapoor.wed.FormDetails;
-import pkapoor.wed.ViewGeneratedInvite;
 import pkapoor.wed.R;
+import pkapoor.wed.ViewGeneratedInvite;
 import viewlist.ShowList;
 
 /**
