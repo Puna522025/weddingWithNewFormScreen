@@ -17,6 +17,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+
 import Common.Config;
 import formstepper.StepperClass;
 import pkapoor.wed.R;
@@ -31,7 +35,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ThemesForrmDetails extends Fragment implements View.OnClickListener {
 
-    ImageView tickRed, tickBlue, tickBlack, tickGreen, tickcoupleback, tickPink, tickPinkPetals, tickNoImage;
+    ImageView tickRed, tickBlue, tickBlack, tickGreen, tickcoupleback, tickPink, tickPinkPetals, tickNoImage, pinkPetals, coupleback;
     RelativeLayout rlBackground;
 
     CardView rlPink, rlRed, rlGreen, rlBlack, rlBlue, rlImagePinkPetals, rlImageNoImage, rlCoupleMainBack;
@@ -67,6 +71,9 @@ public class ThemesForrmDetails extends Fragment implements View.OnClickListener
         tickNoImage = (ImageView) view.findViewById(R.id.tickNoImage);
         tickcoupleback = (ImageView) view.findViewById(R.id.tickcoupleback);
 
+        pinkPetals = (ImageView) view.findViewById(R.id.pinkPetals);
+        coupleback = (ImageView) view.findViewById(R.id.coupleback);
+
         rlBackground = (RelativeLayout) view.findViewById(R.id.rlBackground);
         continueToInvite = (TextView) view.findViewById(R.id.continueToInvite);
 
@@ -92,8 +99,15 @@ public class ThemesForrmDetails extends Fragment implements View.OnClickListener
         tickRed.setVisibility(View.VISIBLE);
         tickNoImage.setVisibility(View.VISIBLE);
 
-        // tvcontinueToInvite.setOnClickListener(this);
+        Picasso.with(getActivity())
+                .load(R.drawable.back_seven)
+                .fit()
+                .into(pinkPetals);
 
+        Picasso.with(getActivity())
+                .load(R.drawable.two)
+                .fit()
+                .into(coupleback);
     }
 
     @Override

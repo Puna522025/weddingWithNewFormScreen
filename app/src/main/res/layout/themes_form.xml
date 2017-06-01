@@ -229,8 +229,7 @@
                             <ImageView
                                 android:id="@+id/pinkPetals"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/back_seven" />
+                                android:layout_height="match_parent" />
 
                             <ImageView
                                 android:id="@+id/tickPinkPetals"
@@ -265,8 +264,7 @@
                             <ImageView
                                 android:id="@+id/coupleback"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/two" />
+                                android:layout_height="match_parent" />
 
                             <ImageView
                                 android:id="@+id/tickcoupleback"
