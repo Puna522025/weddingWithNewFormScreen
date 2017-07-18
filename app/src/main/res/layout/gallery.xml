@@ -206,7 +206,7 @@
                         android:layout_centerHorizontal="true"
                         android:text="Vdwdwd Kaaaaa"
                         android:textColor="@color/colorRed"
-                        android:textSize="@dimen/counterValue" />
+                        android:textSize="@dimen/counterText" />
 
                     <TextView
                         android:id="@+id/rsvrFaml2"
@@ -216,7 +216,7 @@
                         android:layout_centerHorizontal="true"
                         android:text="Nwdwdd Kaaaaa"
                         android:textColor="@color/colorRed"
-                        android:textSize="@dimen/counterValue" />
+                        android:textSize="@dimen/counterText" />
 
                     <RelativeLayout
                         android:id="@+id/rlContactOne"
@@ -244,7 +244,7 @@
                             android:layout_alignParentStart="true"
                             android:text="880081784288"
                             android:textColor="@color/colorRed"
-                            android:textSize="@dimen/counterValue" />
+                            android:textSize="@dimen/counterText" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -265,7 +265,7 @@
                             android:layout_alignParentStart="true"
                             android:text="8800817842"
                             android:textColor="@color/colorRed"
-                            android:textSize="@dimen/counterValue" />
+                            android:textSize="@dimen/counterText" />
 
                         <ImageView
                             android:layout_width="wrap_content"
