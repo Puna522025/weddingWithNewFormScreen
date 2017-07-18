@@ -5,12 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="true"
+        android:background="@android:color/transparent"
         android:focusableInTouchMode="true">
 
         <ScrollView
@@ -34,7 +36,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/rlThemes">
 
                     <TextView
                         android:id="@+id/themesText"
@@ -318,24 +321,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_below="@+id/scrollViewEventTwo"
             android:gravity="center_horizontal|bottom"
             android:orientation="vertical">
-
-             <!--<ImageView
-                 android:layout_width="150dp"
-                 android:layout_height="150dp"
-                 android:alpha="0.5"
-                 android:src="@drawable/app_icon_four" />-->
 
             <TextView
                 android:id="@+id/continueToInvite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginBottom="15dp"
                 android:padding="15dp"
+
                 android:text="Continue and checkout the invite >>"
                 android:textColor="@color/colorRed"
                 android:textSize="@dimen/mainHeadingSize"
